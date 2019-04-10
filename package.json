@@ -1,0 +1,25 @@
+{
+  "name": "btc",
+  "version": "1.0.0",
+  "description": "BTC- Bring The Change is a online news portal where users can upload videos anonymously and raise their voice against the difficulties they are facing in society",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/attainu-phoenix/noobjs-video-news-portal.git"
+  },
+  "author": "Abhishek Samarth Mousam",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/attainu-phoenix/noobjs-video-news-portal/issues"
+  },
+  "homepage": "https://github.com/attainu-phoenix/noobjs-video-news-portal#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "hbs": "^4.0.3",
+    "mongodb": "^3.2.3"
+  }
+}
