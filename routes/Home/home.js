@@ -10,6 +10,10 @@ router.get('/videoStreaming', (req, res) => {
     res.render('videoPlayer.hbs');
 });
 
+router.get('/upload', (req, res) => {
+    res.render("uploadVideo.hbs");
+});
+
 
 
 module.exports = router;
