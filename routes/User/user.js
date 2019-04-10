@@ -14,11 +14,11 @@ router.get('/signup', (req, res) => {
 });
 
 router.post('/login', (req, res) => {
-    res.render("index.hbs");
+    res.redirect("/");
 });
 
 router.post('/signup', (req, res) => {
-    res.render("index.hbs");
+    res.redirect("/user/login");
 });
 
 module.exports = router;
