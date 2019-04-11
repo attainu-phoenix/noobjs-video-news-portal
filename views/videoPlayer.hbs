@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>BTC-Bring The Change | Video Player</title>
+    <title>BTC Video</title>
 
     <!-- Bootsrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -16,7 +16,7 @@
     <!-- Navigation here -->
     <nav class="navbar navbar-fixed-top navbar-expand-lg navbar-dark bg-dark">
     
-        <a class="navbar-brand" href="">BTC</a>
+        <a class="navbar-brand" href="/">BTC</a>
     
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#btcNav" aria-controls="navbarNav"
             aria-expanded="false" aria-label="Toggle navigation">
@@ -40,69 +40,46 @@
                     <li class="nav-item">
                         <a href="/user/login" class="nav-link">Sign In</a>
                     </li>
+                    <li class="nav-item">
+                        <a href="/user/signup" class="nav-link">Sign Up</a>
+                    </li>
                 </ul>
             </div>
     </nav>
-
-    <div class="blankSpace">
-        <p></p>
-    </div>
-    
-    <!--Video Player and Description section-->
-    <div class="container-fluid">
-        <div class="row">
-            <!--Video Section-->
-            <div class="col-8">
-                <div class="container-fluid">
-                    <div class="col-lg-12 padding-zero embed-responsive embed-responsive-21by9">
-                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/mk1DXwb-XbM" allowfullscreen="true"></iframe>
-                    </div>
-                    <p></p>
-                </div>
-            </div>
-    
-    
-            <!--Description Section-->
-            <div class="col-4">
-                <!--Title of the video wit a part of discription-->
-                <h3>Daenerys Targaryen</h3>
-                <p>Emilia Clarke on Playing Daenerys Targaryen.morbi tincidunt augue interdum velit euismod in pellentesque massa placerat duis ultricies lacus sed turpis tincidunt id aliquet risus feugiat in ante metus dictum at tempor commodo ullamcorper a lacus vestibulum sed arcu non odio euismod lacinia at quis risus sed vulputate odio ut enim blandit volutpat maecenas volutpat blandit aliquam etiam erat velit scelerisque in dictum non consectetur a erat nam at lectus urna duis convallis convallis tellus id interdum velit laoreet id donec ultrices tincidunt arcu non sodales neque sodales ut etiam sit amet nisl purus.</p>
-            </div>
-        </div>
-    </div>
-
-    <!--Comment and Recomended video section-->
-    <div class="container-fluid">
-        <div style="height: 100px">
-            <div class="h-100">
-                <div class="row">
-                    <!--Comment Section-->
-                    <div class="col-8">
-                        <h3>Comments</h3>
+        <div class="container-fullwidth m-3">
+            <div class="row">
+                    <div class="col-md-6">
+                        <video preload="none" class="embed-responsive embed-responsive-1by1" poster="/sample.jpg" controls>
+                                <source src="/sample.mp4" type="video/mp4">
+                        </video>
+                            <h5 class="text-left m-3">Comments Area</h5>
                     </div>
             
-            
-                    <!--Recomended Section-->
-                    <div class="col-4">
-                        <h3>Recomended News</h3>
+                     
+                    <div class="col-md-3">
+                        <h3>{{reqVideo.title}}</h3>
+                        <p>{{reqVideo.description}}</p>
+
                     </div>
-                </div>
+
+                   
+                    <div class="col-md-3"> 
+                        <h5>Related Videos</h5>
+                        <div class="row">
+                            <div class="col-md-10">
+                                {{#each related}}
+                                    <img style="margin-top:10px;" src="/sample.jpg" class="img-fluid">
+                                    <h4 class="m-1"><a href="/video/{{_id}}">{{title}}</a></h4>
+                                {{/each}}
+                            </div>
+                        </div>
+                    </div> 
+                   
+                </div> 
             </div>
         </div>
-    </div>
-   
     
-   <!-- Footer -->
-   <footer class="bg-dark">
 
-        <!-- Copyright -->
-        <div class="footer-copyright text-center py-3">© 2019 Copyright:
-          <a href="#">BTC-Bring The Change</a>
-        </div>
-        <!-- Copyright -->
-    
-    </footer>
-    <!-- Footer -->
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

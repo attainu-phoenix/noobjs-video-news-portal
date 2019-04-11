@@ -33,6 +33,21 @@ app.use("/admin",Admin);
 app.use("/user", User);
 
 
+let DB ;
+
+// Create a Mongo client
+let mongoClient = new mongo.MongoClient("mongodb://localhost:27017/BTC", { useNewUrlParser: true });
+mongoClient.connect(function(error) {
+    if (error) {
+        return console.log("Error connecting to the database.");
+    } else {
+        DB = mongoClient.db("BTC");
+        app.locals.DB = DB;
+    } 
+});
+
+
+
 
 
 

@@ -1,124 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>BTC-Bring The Change | Upload Video</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>BTC | Upload Video</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
+
 <body>
-        <!--------------------------------------------NavBar Section---------------------------------->
-        <nav class="navbar navbar-fixed-top navbar-expand-lg navbar-dark bg-dark">
-    
-                <a class="navbar-brand" href="">BTC</a>
-        
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#btcNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-        
-               <div class="collapse navbar-collapse" id="btcNav">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a href="/categories/politics" class="nav-link">Politics</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="/categories/business" class="nav-link">Business</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="/categories/sports" class="nav-link">Sports</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="/upload" class="nav-link">Upload</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="/user/login" class="nav-link">Sign In</a>
-                    </li>
-                </ul>
-            </div>
-            </nav>
-            <div class="blankSpace">
-                <p></p>
-                <p></p>
-            </div>
+    <!--NavBar Section-->
+    <nav class="navbar navbar-fixed-top navbar-expand-lg navbar-dark bg-dark">
 
-            <!----------------------------------------------UPLOAD SECTION------------------------------------------------>
-            <div class="continer">
-                <div class="row">
-                    <div class="col-md-9 offset-md-2">
-                        <h2>
-                            Upload Videos Anonymously
-                        </h2>
-                        <hr>
-                        <br>
-                        
-                        <label for="Video Title"> Video Title:  </label>
-                            <input type="text" class="form-control" placeholder="Enter Video Title">
-                            <br>
-                        <label for="Video Description"> Video Description  </label>
-                            <textarea rows="6" class="form-control" placeholder="Enter Video Title"></textarea>
-                            <br>
-                        <div class="form-inline">
+        <a class="navbar-brand" href="/">BTC</a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#btcNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="btcNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a href="/categories/politics" class="nav-link">Politics</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/categories/business" class="nav-link">Business</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/categories/sports" class="nav-link">Sports</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/upload" class="nav-link">Upload</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/user/login" class="nav-link">Sign In</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/user/signup" class="nav-link">Sign Up</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!--UPLOAD SECTION-->
+    <div class="continer m-3">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <h2>
+                    Upload Videos Anonymously
+                </h2>
+                <hr>
+                <form action="/upload" method="post">
+                    <label for="Video Title"> Video Title: </label>
+                    <input name="title" type="text" class="form-control" placeholder="Enter Video Title">
+                    <br>
+                    <label for="Video Description"> Video Description </label>
+                    <textarea name="description" rows="6" class="form-control"
+                        placeholder="Enter Video Title"></textarea>
+                    <br>
+
+                    <div class="form-inline">
                         <label for="Video Category">Video Category: </label>
-                      
-                        <div class="dropdown">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                 Category
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                  <a class="dropdown-item" href="#">Politics</a>
-                                  <a class="dropdown-item" href="#">Sports</a>
-                                  <a class="dropdown-item" href="#">Others..</a>
-                                </div>
-
-                        </div>
-                        
-                        </div>
-
-                        <p></p>
-                        <p> </p>
-                        <label for="videoThumbnail">Video Thumbail</label>
-                        <div class="input-group mb-3">
-                               
-                                <div class="custom-file">
-                                  <input type="file" class="custom-file-input" id="videoThumbnail" aria-describedby="inputGroupFileAddon01">
-                                  <label class="custom-file-label" for="inputGroupFile01">Upload video thumbnail</label>
-                                </div>
-                        </div>
-                        <label for="videoThumbnail">Video Upload</label>
-                        <div class="input-group mb-3">
-                               
-                                <div class="custom-file">
-                                  <input type="file" class="custom-file-input" id="videoUpload" aria-describedby="inputGroupFileAddon01">
-                                  <label class="custom-file-label" for="videoUpload">upload video</label>
-                                </div>
-                        </div>
-                        <p></p>
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <button class="form-group btn btn-info">Submit</button>
-                                    </div>
-                                    <div class="col-md-4">
-                                            <button class="form-group btn btn-warning">Reset</button>
-                                    </div>
-                                    <div class="col-md-4">
-                                            <button class="form-group btn btn-danger">Cancel</button>
-                                    </div>
-                                </div>
+                        <select name="category" class="custom-select">
+                            <option selected>Open this to select category</option>
+                            <option value="sports">sports</option>
+                            <option value="politics">politics</option>
+                            <option value="business">business</option>
+                        </select>
                     </div>
-                </div>
-            </div>
-             <!-- Footer -->
-        <footer class="bg-dark">
+                    <br>
+                    <label class="" for="videoThumbnail">Video Thumbail</label>
+                    <div class="input-group mb-3 ">
 
-                <!-- Copyright -->
-                <div class="footer-copyright text-center py-3">© 2019 Copyright:
-                  <a href="#">BTC-Bring The Change</a>
-                </div>
-                <!-- Copyright -->
-            
-            </footer>
-            <!-- Footer -->
+                        <div class="custom-file">
+                            <input name="thumbnail" type="file" class="custom-file-input" id="videoThumbnail"
+                                aria-describedby="inputGroupFileAddon01">
+                            <label class="custom-file-label" for="inputGroupFile01">Upload video thumbnail</label>
+                        </div>
+                    </div>
+
+                    <label for="videoThumbnail">Video Upload</label>
+                    <div class="input-group mb-3">
+
+                        <div class="custom-file">
+                            <input name="video" type="file" class="custom-file-input" id="videoUpload"
+                                aria-describedby="inputGroupFileAddon01">
+                            <label class="custom-file-label" for="videoUpload">upload video</label>
+                        </div>
+                    </div>
+                    <p></p>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <button type="submit" class="form-group btn btn-info">Submit</button>
+                        </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    </div>
+
 </body>
+
 </html>

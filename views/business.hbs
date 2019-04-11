@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>BTC - Bring The Change | News | Business </title>
+    <title>BTC | Business </title>
 
      <!-- Bootsrap CSS -->
      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -16,14 +16,14 @@
         <!-- Navigation here -->
         <nav class="navbar navbar-fixed-top navbar-expand-lg navbar-dark bg-dark">
     
-            <a class="navbar-brand" href="">BTC</a>
+            <a class="navbar-brand" href="/">BTC</a>
     
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#btcNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
     
-             <div class="collapse navbar-collapse" id="btcNav">
+            <div class="collapse navbar-collapse" id="btcNav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
                         <a href="/categories/politics" class="nav-link">Politics</a>
@@ -40,6 +40,9 @@
                     <li class="nav-item">
                         <a href="/user/login" class="nav-link">Sign In</a>
                     </li>
+                    <li class="nav-item">
+                        <a href="/user/signup" class="nav-link">Sign In</a>
+                    </li>
                 </ul>
             </div>
         </nav>
@@ -49,129 +52,22 @@
             <p></p>
         </div>
     
-        <!-- Video-Row-1 with 4 coloumns-->
+        <h4 class=" display-4 text-center m-3">Business News</h4>
         <div class="container">
-            <p class="lead text-left">Latest News</p>
-
-            <h3>Business News</h3>
-            <hr>
-            <div class="row">
-               
+           <div class="row ">
+                 {{#each business}}
                 <div class="col-sm-3">
                     <!-- 4:3 -->
-                    
-                    <div class="embed-responsive embed-responsive-4by3">
-                        <iframe src="https://www.youtube.com/embed/mk1DXwb-XbM" frameborder="0" allowfullscreen></iframe>
-                    </div>
+                    <img src="/sample.jpg" class="img-fluid">
                     <!--Title of the video wit a part of discription-->
-                    <p>Daenerys Targaryen
-                        <small class="text-muted"> : Cast Remembers: Emilia Clarke on Playing Daenerys Targaryen</small>
-                    </p>
+                    <p> <a href="/video/{{_id}}"> {{title}}</a> </p>
                 </div>
-
-                <div class="col-sm-3">
-                    <!-- 4:3 -->
-                    <div class="embed-responsive embed-responsive-4by3">
-                        <iframe src="https://www.youtube.com/embed/sAD-WM4m9N8" frameborder="0" allowfullscreen></iframe>
-                    </div>
-                    <!--Title of the video wit a part of discription-->
-                    <p>Sansa Stark
-                        <small class="text-muted">: The Cast Remembers: Sophie Turner on Playing Sansa Stark</small>
-                    </p>
-                </div>
-
-                <div class="col-sm-3">
-                    <!-- 4:3 -->
-                    <div class="embed-responsive embed-responsive-4by3">
-                        <iframe src="https://www.youtube.com/embed/P8mgTJMqhHY" frameborder="0" allowfullscreen></iframe>
-                    </div>
-                    <!--Title of the video wit a part of discription-->
-                    <p>Arya Stark
-                        <small class="text-muted">: The Cast Remembers: Maisie Williams on Playing Arya Stark</small>
-                    </p>
-                </div>
-
-                <div class="col-sm-3">
-                    <!-- 4:3 -->
-                    <div class="embed-responsive embed-responsive-4by3">
-                        <iframe src="https://www.youtube.com/embed/GKxbuU7c8Uo" frameborder="0" allowfullscreen></iframe>
-                    </div>
-                    <!--Title of the video wit a part of discription-->
-                    <p>Jon Snow
-                        <small class="text-muted">: The Cast Remembers: Kit Harington on Playing Jon Snow</small>
-                    </p>
-                </div>
-
+                {{/each}}
             </div>
         </div>
-        
         <hr>
-        <div class="container">
-                <div class="row">
-               
-                        <div class="col-sm-3">
-                            <!-- 4:3 -->
-                            
-                            <div class="embed-responsive embed-responsive-4by3">
-                                <iframe src="https://www.youtube.com/embed/mk1DXwb-XbM" frameborder="0" allowfullscreen></iframe>
-                            </div>
-                            <!--Title of the video wit a part of discription-->
-                            <p>Daenerys Targaryen
-                                <small class="text-muted"> : Cast Remembers: Emilia Clarke on Playing Daenerys Targaryen</small>
-                            </p>
-                        </div>
-        
-                        <div class="col-sm-3">
-                            <!-- 4:3 -->
-                            <div class="embed-responsive embed-responsive-4by3">
-                                <iframe src="https://www.youtube.com/embed/sAD-WM4m9N8" frameborder="0" allowfullscreen></iframe>
-                            </div>
-                            <!--Title of the video wit a part of discription-->
-                            <p>Sansa Stark
-                                <small class="text-muted">: The Cast Remembers: Sophie Turner on Playing Sansa Stark</small>
-                            </p>
-                        </div>
-        
-                        <div class="col-sm-3">
-                            <!-- 4:3 -->
-                            <div class="embed-responsive embed-responsive-4by3">
-                                <iframe src="https://www.youtube.com/embed/P8mgTJMqhHY" frameborder="0" allowfullscreen></iframe>
-                            </div>
-                            <!--Title of the video wit a part of discription-->
-                            <p>Arya Stark
-                                <small class="text-muted">: The Cast Remembers: Maisie Williams on Playing Arya Stark</small>
-                            </p>
-                        </div>
-        
-                        <div class="col-sm-3">
-                            <!-- 4:3 -->
-                            <div class="embed-responsive embed-responsive-4by3">
-                                <iframe src="https://www.youtube.com/embed/GKxbuU7c8Uo" frameborder="0" allowfullscreen></iframe>
-                            </div>
-                            <!--Title of the video wit a part of discription-->
-                            <p>Jon Snow
-                                <small class="text-muted">: The Cast Remembers: Kit Harington on Playing Jon Snow</small>
-                            </p>
-                        </div>
-        
-                    </div>
-        </div>
-        
-
-            </div>
-        </div>
     
-        <!-- Footer -->
-        <footer class="bg-dark">
-
-            <!-- Copyright -->
-            <div class="footer-copyright text-center py-3">© 2019 Copyright:
-              <a href="#">BTC-Bring The Change</a>
-            </div>
-            <!-- Copyright -->
-        
-        </footer>
-        <!-- Footer -->
+       
 
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
