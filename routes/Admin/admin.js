@@ -20,17 +20,17 @@ router.post('/login', (req, res) => {
         }
         else
         {
-            for(i=0;i<admin.length;i++)
+        for(i=0;i<admin.length;i++)
+        {
+            if(admin[i].email==email && admin[i].password==password)
             {
-                if(admin[i].email==email && admin[i].password==password)
-                {
-                    res.redirect('/admin/home');
-                }
-                else
-                {
-                    res.redirect('/admin/login');
-                }
+                res.redirect('/admin/home');
             }
+            else
+            {
+                res.redirect('/admin/login');
+            }
+        }
         }
     });
     
@@ -72,20 +72,19 @@ router.get('/home/video', (req, res) => {
     })
 });
 
-router.post('/home/video', (req, res) => {
+router.post('/home/video/reject', (req, res) => {
     let id=req._id;
     let DB = req.app.locals.DB;
     res.render("adminApp.hbs");
-    DB.collection("videos").deleteOne({_id : ObjectId(_id)}).toArray(function(error,video){
-        if(error){
-            console.log(error);
-        }
-        else{
-            
-            
-            res.redirect("adminPanel.hbs",data);
-        }
-    })
+    DB.collection("videos").remove({_id : ObjectId(_id)})
+        res.redirect("adminPanel.hbs");  
+});
+
+router.post('/home/video/approve', (req, res) => {
+    let id=req._id;
+    let DB = req.app.locals.DB;
+    res.render("adminApp.hbs");
+        res.redirect("adminPanel.hbs");  
 });
 
 
