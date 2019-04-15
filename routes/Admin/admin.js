@@ -51,7 +51,7 @@ router.get('/home', (req, res) => {
 
 router.get('/home/video', (req, res) => {
     let DB = req.app.locals.DB;
-    let findVideo={_id : ObjectId('"'+req.params._id+'"')};
+    let findVideo={_id : ObjectId('"'+req.params.id+'"')};
     DB.collection("videos").findOne(findVideo).toArray(function(error,video){
         if(error){
             console.log(error);
