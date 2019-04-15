@@ -2,7 +2,7 @@
 const express = require('express');
 const router = express.Router();
 
-
+//Route For Sports Category Page
 router.get('/sports', (req, res) => {
     let DB = req.app.locals.DB;
     DB.collection("videos").find({category:"sports"}).toArray(function(error, videos) {
@@ -19,6 +19,7 @@ router.get('/sports', (req, res) => {
     });
 });
 
+//Route For Business Category Page
 router.get('/business', (req, res) => {
     let DB = req.app.locals.DB;
     DB.collection("videos").find({category:"business"}).toArray(function(error, videos) {
@@ -35,6 +36,7 @@ router.get('/business', (req, res) => {
     });
 });
 
+//Route For Political Category Page
 router.get('/politics', (req, res) => {
     let DB = req.app.locals.DB;
     DB.collection("videos").find({category:"politics"}).toArray(function(error, videos) {
