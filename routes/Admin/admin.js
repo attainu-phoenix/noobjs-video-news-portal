@@ -3,6 +3,8 @@ const express = require('express');
 
 const router = express.Router();
 
+const mongodb=require('mongodb');
+
 router.get('/login', (req, res) => {
     
     res.render('adminLogin.hbs');
@@ -12,7 +14,8 @@ router.post('/login', (req, res) => {
     let email=req.body.email;
     let password=req.body.password;
     let DB = req.app.locals.DB;
-    DB.collection("admin").findOne({ email : email}).toArray(function(error,admin)
+    let findAdmin={email : email, password : password};
+    DB.collection("admin").findOne(findAdmin).toArray(function(error,admin)
     {
         if(error)
         {
@@ -20,17 +23,7 @@ router.post('/login', (req, res) => {
         }
         else
         {
-        for(i=0;i<admin.length;i++)
-        {
-            if(admin[i].email==email && admin[i].password==password)
-            {
-                res.redirect('/admin/home');
-            }
-            else
-            {
-                res.redirect('/admin/login');
-            }
-        }
+            res.redirect('/admin/home');
         }
     });
     
@@ -40,7 +33,8 @@ router.post('/login', (req, res) => {
 router.get('/home', (req, res) => {
     
     let DB = req.app.locals.DB;
-    DB.collection("videos").find({}).toArray(function(error,videos){
+    let findVideos={isPublished : false};
+    DB.collection("videos").find(findVideos).toArray(function(error,videos){
         if(error){
             console.log(error);
         }
@@ -57,8 +51,8 @@ router.get('/home', (req, res) => {
 
 router.get('/home/video', (req, res) => {
     let DB = req.app.locals.DB;
-    res.render("adminApp.hbs");
-    DB.collection("videos").findOne({_id()}).toArray(function(error,video){
+    let findVideo={_id : ObjectId('"'+req.params._id+'"')};
+    DB.collection("videos").findOne(findVideo).toArray(function(error,video){
         if(error){
             console.log(error);
         }
@@ -73,18 +67,22 @@ router.get('/home/video', (req, res) => {
 });
 
 router.post('/home/video/reject', (req, res) => {
-    let id=req._id;
+    let removeVideo={_id : ObjectId('"'+req.body.videoId+'"')};
     let DB = req.app.locals.DB;
     res.render("adminApp.hbs");
-    DB.collection("videos").remove({_id : ObjectId(_id)})
-        res.redirect("adminPanel.hbs");  
+    DB.collection("videos").remove(removeVideo);
+        res.redirect('admin/home');  
 });
 
 router.post('/home/video/approve', (req, res) => {
-    let id=req._id;
+    let addVideo={_id : ObjectId('"'+req.body.videoId+'"')};
+    DB.collection("videos").updateOne(
+        addVideo,
+        { $set: { isPublished : "true" } }
+     );
     let DB = req.app.locals.DB;
     res.render("adminApp.hbs");
-        res.redirect("adminPanel.hbs");  
+        res.redirect('admin/home');  
 });
 
 
