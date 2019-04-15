@@ -50,46 +50,18 @@
                 <h2 >Pending Approval Videos.</h2>
             </div>
         </div>
-        <div class="row m-3">
+        <div class="row">
+                {{#each videos}}
                 <div class="col-md-4">
-                        <video preload="none" class="embed-responsive embed-responsive-1by1" poster="/sample.jpg" controls>
-                            <source src="/sample.mp4" type="video/mp4">
-                        </video>
-                        <a href="/admin/home/video"> <h4>lorem ipsum</h4> </a>
+                        <img src="/sample.jpg" class="img-fluid">
+                    <!--Title of the video wit a part of discription-->
+                        <p> <a href="/video/{{_id}}"> {{title}}</a> </p>
+                        
                 </div>
-                <div class="col-md-4">
-                        <video preload="none" class="embed-responsive embed-responsive-1by1" poster="/sample.jpg" controls>
-                            <source src="/sample.mp4" type="video/mp4">
-                        </video>
-                        <a href="/admin/home/video"> <h4>lorem ipsum</h4> </a>
-                </div>
-                <div class="col-md-4">
-                        <video preload="none" class="embed-responsive embed-responsive-1by1" poster="/sample.jpg" controls>
-                            <source src="/sample.mp4" type="video/mp4">
-                        </video>
-                        <a href="/admin/home/video"> <h4>lorem ipsum</h4> </a>
-                </div>
+                {{/each}}
         </div>
-        <div class="row m-3">
-                <div class="col-md-4">
-                        <video preload="none" class="embed-responsive embed-responsive-1by1" poster="/sample.jpg" controls>
-                            <source src="/sample.mp4" type="video/mp4">
-                        </video>
-                        <a href="/admin/home/video"> <h4>lorem ipsum</h4> </a>
-                </div>
-                <div class="col-md-4">
-                        <video preload="none" class="embed-responsive embed-responsive-1by1" poster="/sample.jpg" controls>
-                            <source src="/sample.mp4" type="video/mp4">
-                        </video>
-                        <a href="/admin/home/video"> <h4>lorem ipsum</h4> </a>
-                </div>
-                <div class="col-md-4">
-                        <video preload="none" class="embed-responsive embed-responsive-1by1" poster="/sample.jpg" controls>
-                            <source src="/sample.mp4" type="video/mp4">
-                        </video>
-                        <a href="/admin/home/video"> <h4>lorem ipsum</h4> </a>
-                </div>
-        </div>
+        
+        
    
 </div>
 

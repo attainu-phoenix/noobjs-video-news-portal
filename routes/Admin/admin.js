@@ -4,21 +4,87 @@ const express = require('express');
 const router = express.Router();
 
 router.get('/login', (req, res) => {
+    
     res.render('adminLogin.hbs');
 });
 
 router.post('/login', (req, res) => {
-    res.redirect('/admin/home');
+    let email=req.body.email;
+    let password=req.body.password;
+    let DB = req.app.locals.DB;
+    DB.collection("admin").findOne({ email : email}).toArray(function(error,admin)
+    {
+        if(error)
+        {
+            console.log(error);
+        }
+        else
+        {
+        for(i=0;i<admin.length;i++)
+        {
+            if(admin[i].email==email && admin[i].password==password)
+            {
+                res.redirect('/admin/home');
+            }
+            else
+            {
+                res.redirect('/admin/login');
+            }
+        }
+        }
+    });
+    
 });
 
 
 router.get('/home', (req, res) => {
-    res.render("adminPanel.hbs");
+    
+    let DB = req.app.locals.DB;
+    DB.collection("videos").find({}).toArray(function(error,videos){
+        if(error){
+            console.log(error);
+        }
+        else{
+            
+            let data={
+                videos : videos
+            }
+            res.render("adminPanel.hbs",data);
+        }
+    })
 });
 
 
 router.get('/home/video', (req, res) => {
+    let DB = req.app.locals.DB;
     res.render("adminApp.hbs");
+    DB.collection("videos").findOne({_id()}).toArray(function(error,video){
+        if(error){
+            console.log(error);
+        }
+        else{
+            
+            let data={
+                video : video
+            }
+            res.render("adminApp.hbs",data);
+        }
+    })
+});
+
+router.post('/home/video/reject', (req, res) => {
+    let id=req._id;
+    let DB = req.app.locals.DB;
+    res.render("adminApp.hbs");
+    DB.collection("videos").remove({_id : ObjectId(_id)})
+        res.redirect("adminPanel.hbs");  
+});
+
+router.post('/home/video/approve', (req, res) => {
+    let id=req._id;
+    let DB = req.app.locals.DB;
+    res.render("adminApp.hbs");
+        res.redirect("adminPanel.hbs");  
 });
 
 
