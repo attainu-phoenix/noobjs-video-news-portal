@@ -15,7 +15,7 @@ router.post('/login', (req, res) => {
     let password=req.body.password;
     let DB = req.app.locals.DB;
     let findAdmin={email : email, password : password};
-    DB.collection("admin").findOne(findAdmin).toArray(function(error,admin)
+    DB.collection("admin").find(findAdmin).toArray(function(error,admin)
     {
         if(error)
         {
@@ -69,7 +69,6 @@ router.get('/home/video', (req, res) => {
 router.post('/home/video/reject', (req, res) => {
     let removeVideo={_id : ObjectId('"'+req.body.videoId+'"')};
     let DB = req.app.locals.DB;
-    res.render("adminApp.hbs");
     DB.collection("videos").remove(removeVideo);
         res.redirect('admin/home');  
 });
@@ -81,8 +80,7 @@ router.post('/home/video/approve', (req, res) => {
         { $set: { isPublished : "true" } }
      );
     let DB = req.app.locals.DB;
-    res.render("adminApp.hbs");
-        res.redirect('admin/home');  
+    res.redirect('admin/home');  
 });
 
 
