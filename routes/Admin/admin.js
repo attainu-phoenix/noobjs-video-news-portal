@@ -33,7 +33,7 @@ router.post('/login', (req, res) => {
 router.get('/home', (req, res) => {
     
     let DB = req.app.locals.DB;
-    let findVideos={isPublished : "false"};
+    let findVideos={isPublished :false};
     DB.collection("videos").find(findVideos).toArray(function(error,videos){
         if(error){
             console.log(error);
@@ -83,7 +83,7 @@ router.post('/home/video/approve', (req, res) => {
     
     DB.collection("videos").updateOne(
         addVideo,
-        { $set: { isPublished : "true" } }
+        { $set: { isPublished : true } }
      );
     
     res.render("adminApp.hbs");
