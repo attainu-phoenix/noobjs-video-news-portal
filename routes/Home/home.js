@@ -115,7 +115,7 @@ router.post('/upload', (req, res) => {
         description:req.body.description,
         category:req.body.category,
         date:Date(),
-        isPublished:"false"
+        isPublished:false
     };
     
     DB.collection("videos").insertOne(incomingData, function(error, result) {
