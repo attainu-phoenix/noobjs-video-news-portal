@@ -83,7 +83,7 @@ router.post('/home/video/approve', (req, res) => {
     
     DB.collection("videos").updateOne(
         addVideo,
-        { $set: { isPublished : true } }
+        { $set: { isPublished : true,title:req.body.title,description:req.body.description,category:req.body.category } }
      );
     
     res.render("adminApp.hbs");

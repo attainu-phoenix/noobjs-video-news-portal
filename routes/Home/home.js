@@ -19,7 +19,7 @@ router.get('/', (req, res) => {
     let mysort = { date: -1 };
 
      // Getting All Latest Videos From The DataBase 
-    DB.collection("videos").find({}).limit(8).sort(mysort).toArray(function(error, latestvid) {
+    DB.collection("videos").find({isPublished:true}).limit(8).sort(mysort).toArray(function(error, latestvid) {
     
         if (error) {
             console.log(error);
@@ -29,7 +29,7 @@ router.get('/', (req, res) => {
 
          // Getting All Business Videos From The DataBase 
 
-        DB.collection("videos").find({category:"business"}).limit(8).sort(mysort).toArray(function(error, business) {
+        DB.collection("videos").find({category:"business",isPublished:true}).limit(8).sort(mysort).toArray(function(error, business) {
     
             if (error) {
                 console.log(error);
@@ -40,7 +40,7 @@ router.get('/', (req, res) => {
             
              // Getting All Political Videos From The DataBase 
 
-            DB.collection("videos").find({category:"politics"}).limit(8).sort(mysort).toArray(function(error, politics) {
+            DB.collection("videos").find({category:"politics",isPublished:true}).limit(8).sort(mysort).toArray(function(error, politics) {
     
                 if (error) {
                     console.log(error);
@@ -51,7 +51,7 @@ router.get('/', (req, res) => {
 
                  // Getting All Sports Videos From The DataBase 
 
-                DB.collection("videos").find({category:"sports"}).limit(8).sort(mysort).toArray(function(error, sports) {
+                DB.collection("videos").find({category:"sports",isPublished:true}).limit(8).sort(mysort).toArray(function(error, sports) {
     
                     if (error) {
                         console.log(error);
@@ -85,7 +85,7 @@ router.get('/video/:id', (req, res) => {
         } else {
             singleVideo.reqVideo = reqVideo;
 
-           DB.collection("videos").find({category:reqVideo.category}).limit(3).sort(mysort).toArray(function(error, relatedVid) {
+           DB.collection("videos").find({category:reqVideo.category,isPublished:true}).limit(3).sort(mysort).toArray(function(error, relatedVid) {
            
                if (error) {
                    console.log(error);

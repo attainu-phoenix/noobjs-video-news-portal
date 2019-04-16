@@ -40,33 +40,34 @@
             </div>
             <div class="col-md-6">
              {{#each video}}
-            <form class="" action="" method="POST">
+            <form action="/admin/home/video/approve" method="POST">
                    
                     <div class="form-group">
                         <input hidden name="videoId" type="text" value="{{_id}}" class="form-control" id="idfield">  
                         <label for="Title">Title</label>
-                        <input type="text" value="{{title}}" class="form-control" id="exampleCheck1">     
+                        <input name="title" type="text" value="{{title}}" class="form-control" id="exampleCheck1">     
                     </div>
                     <div class="form-group">
                             <label for="Category">Category</label>
-                            <input type="text" value="{{category}}" class="form-control" id="exampleCheck1">     
+                            <input name="category" type="text" value="{{category}}" class="form-control" id="exampleCheck1">     
                     </div>
                     <div class="form-group">
                             <label for="Description">Description</label>
-                            <textarea class="form-control"  id="exampleFormControlTextarea1" rows="5">{{description}}</textarea>
+                            <textarea name="description" class="form-control"  id="exampleFormControlTextarea1" rows="5">{{description}}</textarea>
                     </div>
                      
                     <div class="row">
                         
                         <div class="text-center col-md-6">
-                                    <button type="submit" formaction="video/approve" id="btnApprove" class="btn btn-success">Approve</button>
+                                    <button type="submit" formaction="/admin/home/video/approve" id="btnApprove" class="btn btn-success">Approve</button>
                         </div>
+                    </form>
                         <div class="text-center col-md-6">
-                                        <button type="submit"  formaction="video/reject" class="btn btn-danger">Reject</button>
+                                        <button type="submit"  formaction="/admin/home/video/reject" class="btn btn-danger">Reject</button>
                         </div>
                     </div>
                       
-            </form>
+            
              {{/each}}   
             </div>
         </div>
