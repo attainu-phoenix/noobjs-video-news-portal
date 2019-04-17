@@ -6,6 +6,8 @@ const bodyParser = require("body-parser");
 
 const mongo = require("mongodb");
 
+const session = require("express-session");
+
 const Admin = require("./routes/Admin/admin")
 
 const User = require("./routes/User/user");
@@ -23,6 +25,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.use(express.static("public"));
+
+app.use(session({secret:"winterIsComing"}));
 
 app.use("/", Home);
 
