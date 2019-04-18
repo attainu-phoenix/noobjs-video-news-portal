@@ -32,6 +32,7 @@ router.post('/login', (req, res) => {
     });
 });
 
+
 router.get('/signup', (req, res) => {
     res.render("signup.hbs");
 });
@@ -48,11 +49,15 @@ router.post('/signup', (req, res) => {
         if (error) {
             res.send("Error occured while SignUp.");
         } else {
-            res.send("Successfully signed up !!!");
+            res.redirect("/user/login");
         }
 
     });
+});
 
+router.get('/logout', (req, res) => {
+    req.session.user = null;
+    res.redirect("/");
 });
 
 module.exports = router;
