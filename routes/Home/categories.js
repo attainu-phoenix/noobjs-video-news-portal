@@ -13,6 +13,7 @@ router.get('/sports', (req, res) => {
             let sports  = {
                 sports: videos
             };
+            req.session.user ? sports.logoutBtn = true : sports.loginBtn = true;
             res.render("sports.hbs",sports);
         }
     
@@ -30,6 +31,7 @@ router.get('/business', (req, res) => {
             let business  = {
                 business: videos
             };
+            req.session.user ? business.logoutBtn = true : business.loginBtn = true;
             res.render("business.hbs",business);
         }
     
@@ -47,6 +49,7 @@ router.get('/politics', (req, res) => {
             let politics  = {
             politics: videos
             };
+            req.session.user ? politics.logoutBtn = true : politics.loginBtn = true;
             res.render("politics.hbs",politics);
         }
     

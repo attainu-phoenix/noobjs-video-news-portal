@@ -9,8 +9,8 @@ const session = require("express-session");
 router.get('/', (req, res) => {
 
     let homepageData = {};
-
-
+    req.session.user ? homepageData.logoutBtn = true : homepageData.loginBtn = true;
+    
     if(req.query.videoUploaded) {
         homepageData.videoUploaded = true
     }
@@ -79,6 +79,7 @@ router.get('/video/:id', (req, res) => {
     let singleVideo = {};
     let findThis = {_id:mongo.ObjectId(req.params.id)};
     let mysort = { date: -1 };
+    req.session.user ? singleVideo.logoutBtn = true : singleVideo.loginBtn = true;
     
     DB.collection("videos").findOne(findThis, function(error,reqVideo) {
         if (error) {
@@ -104,7 +105,9 @@ router.get('/video/:id', (req, res) => {
 
 // Upload Route For Users To Sumbit Their Videos
 router.get('/upload', (req, res) => {
-    res.render("uploadVideo.hbs");
+    data = {};
+    req.session.user ? data.logoutBtn = true : data.loginBtn = true;
+    res.render("uploadVideo.hbs",data);
 });
 
 //Getting The Data From The Frontend 
