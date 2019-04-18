@@ -42,7 +42,13 @@
 
 <!---------------------------------------login section--------------------------------->
 <div class="container">
-            {{#if LoggedOut}}
+            
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+           
+            <h2>Login Here</h2>
+            <hr>
+             {{#if LoggedOut}}
                 <p>Logged Out</p>
             {{/if}}
            {{#if notLoggedIn}}
@@ -50,11 +56,6 @@
                     <strong>Error!</strong> Your have to log in first to view admin panel!
                 </div>
             {{/if}}
-    <div class="row">
-        <div class="col-md-6 offset-md-3">
-           
-            <h2>Login Here</h2>
-            <hr>
             <form action="/admin/login" method="POST">
                     <div class="form-group">
                       <label for="exampleInputEmail1">Email address</label>

@@ -5,7 +5,7 @@ const router = express.Router();
 
 const mongo=require('mongodb');
 
-var sess={};
+
 
 router.get('/login', (req, res) => {
     
@@ -28,7 +28,7 @@ router.post('/login', (req, res) =>
                 }
                 else
                 {
-                    sess=req.session;
+                    let sess=req.session;
                     sess.email=email;
                     sess.password=password;
                     res.redirect('/admin/home');
@@ -41,44 +41,42 @@ router.post('/login', (req, res) =>
 router.get('/home', (req, res) => 
     {
         
-        console.log(sess.email);
-                let DB = req.app.locals.DB;
+        let sess=req.session;
+        let DB = req.app.locals.DB;
+        
         if(sess.email&&sess.password)
         {
-            
-                DB.collection("videos").find({}).toArray(function(error,videos)
+                let data={};
+                DB.collection("videos").find({isPublished : true}).toArray(function(error,approvedVideos)
                 {
-                        let approvedVideos=[];
-                        let unApprovedVideos=[]; 
+                        
                             if(error)
                                 {
                                     console.log(error);
                                 }
                             else
-                                {
-                                
-                                
-                                    for(var i=0;i<videos.length;i++)
-                                    {
-                                        if(videos[i].isPublished==true)
-                                        {
-                                        approvedVideos[i]=videos[i];
-                                        }
-                                        else if(videos[i].isPublished==false)
-                                        {
-                                            unApprovedVideos[i]=videos[i];
-                                        }
+                                {   
+                                     data={
+                                        approvedVideos:approvedVideos,
+                                       
                                     }
                                     
-                                    let data={
-                                        approvedVideos:approvedVideos,
-                                        unApprovedVideos : unApprovedVideos
-                                    }
-                                    res.render("adminPanel.hbs",data);
-                                
-                                
                                 }
-                })
+                });
+                DB.collection("videos").find({isPublished : false}).toArray(function(error,unApprovedVideos)
+                {
+                        
+                            if(error)
+                                {
+                                    console.log(error);
+                                }
+                            else
+                                {   
+                                     data.unApprovedVideos=unApprovedVideos;
+                                    
+                                }
+                                res.render("adminPanel.hbs",data);
+                });
         }
         else
         {
@@ -89,7 +87,7 @@ router.get('/home', (req, res) =>
 
 router.get('/home/video', (req, res) => 
     {
-        
+                let sess=req.session;
                 let id=req.query.id;
                 let DB = req.app.locals.DB;
                 if(sess.email&&sess.password)
@@ -119,15 +117,26 @@ router.get('/home/video', (req, res) =>
 
 router.post('/home/video/reject', (req, res) => 
     {
+            let sess=req.session;
+            if(sess.email&&sess.password)
+            {
             let removeVideo={_id : mongo.ObjectId(req.body.videoId)};
             let DB = req.app.locals.DB;
         
             DB.collection("videos").remove(removeVideo);
                 res.redirect('/admin/home');  
+    
+            }
+            else
+            {
+                res.redirect('login/?notLoggedIn=true'); 
+            }
     });
 
     router.post('/home/video/approve', (req, res) => 
-    {
+    {       let sess=req.session;
+            if(sess.email&&sess.password)
+            {
             let DB = req.app.locals.DB;
             let addVideo={_id : mongo.ObjectId(req.body.videoId)};
             
@@ -139,18 +148,22 @@ router.post('/home/video/reject', (req, res) =>
             
             
                 res.redirect('/admin/home');  
+            }
+            else
+            {
+                res.redirect('login/?notLoggedIn=true'); 
+            }
     });
     
 
     router.get('/logout', function(req, res, next) {
         if (req.session) {
-          sess.email="";
-          sess.password="";
+          
           req.session.destroy(function(err) {
             if(err) {
               return next(err);
             } else {
-              return res.redirect('login/?LoggedOut=true');
+              res.redirect('login/?LoggedOut=true');
             }
           });
         }
