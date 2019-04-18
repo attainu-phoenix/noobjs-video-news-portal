@@ -105,7 +105,7 @@ router.get('/video/:id', (req, res) => {
 
 // Upload Route For Users To Sumbit Their Videos
 router.get('/upload', (req, res) => {
-    data = {};
+    let data = {};
     req.session.user ? data.logoutBtn = true : data.loginBtn = true;
     res.render("uploadVideo.hbs",data);
 });
