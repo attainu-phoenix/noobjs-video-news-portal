@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/attainu-phoenix/noobjs-video-news-portal#readme",
   "dependencies": {
+    "bcrypt": "^3.0.6",
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
     "express-session": "^1.16.1",
