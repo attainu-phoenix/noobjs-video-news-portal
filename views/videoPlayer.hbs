@@ -59,11 +59,25 @@
                         <video preload="none" class="embed-responsive embed-responsive-1by1" poster="/sample.jpg" controls>
                                 <source src="/sample.mp4" type="video/mp4">
                         </video>
-                            <h5 class="text-left m-3">Comments Area</h5>
+                            <h4 class="text-left m-3">Comments Area</h4>
+                            <div class="form-group">
+                            <label for="comment"> Wanna Share Your Views ? What Are You Waiting For Then Write It Down</label>
+                            <textarea class="form-control" id="comment" name="comment" id="" cols="30" rows="2"></textarea>
+                            <button class="btn btn-success" name="btn" id="btn" type="submit">Post</button>
+                            </div>
+
+                        <div id="commentSection">
+                            <input id="name" type="hidden" value="{{user.name}}" >
+                        </div>
+                        <div>
+                            <button class="btn btn-secondary" type="button" id="view">View More</button>
+                        </div>
                     </div>
             
                      
                     <div class="col-md-3">
+                        <input id="videoId" type="hidden" value="{{reqVideo._id}}">
+                        <input type="hidden" id="userId" value="{{user._id}}">
                         <h3>{{reqVideo.title}}</h3>
                         <p>{{reqVideo.description}}</p>
 
@@ -89,6 +103,7 @@
 
 
     <!-- Optional JavaScript -->
+    <script src="/js/main.js"></script>
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
