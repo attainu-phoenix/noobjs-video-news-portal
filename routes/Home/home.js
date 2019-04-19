@@ -55,6 +55,7 @@ router.get('/video/:id', (req, res) => {
     let findThis = { _id: mongo.ObjectId(req.params.id) };
     let mysort = { date: -1 };
     req.session.user ? singleVideo.logoutBtn = true : singleVideo.loginBtn = true;
+    if (req.session.user) { singleVideo.user = req.session.user };
 
     DB.collection("videos").findOne(findThis, function(error, reqVideo) {
         error ? console.log(error) : singleVideo.reqVideo = reqVideo;
@@ -90,6 +91,30 @@ router.post('/upload', (req, res) => {
 
     DB.collection("videos").insertOne(incomingData, function(error, result) {
         error ? console.log(error) : res.redirect("/?videoUploaded=true");
+    });
+});
+
+
+router.get('/comments/:id', (req, res) => {
+    let DB = req.app.locals.DB;
+    DB.collection("comments").find({videoId:req.params.id}).toArray(function(error, comments) {
+       
+        error ? console.log(error) : res.json(comments);
+    
+    });
+});
+
+router.post('/comments/:id', (req, res) => {
+    if (!req.session.user) { return res.redirect("/user/login")};
+    let DB = req.app.locals.DB;
+    newComment = {
+        name: req.body.name,
+        commentContent: req.body.commentContent,
+        userId:req.body.userId,
+        videoId:req.params.id
+    }
+    DB.collection("comments").insertOne(newComment, function(error, result) {
+      error ? console.log(error) : res.json(newComment);
     });
 });
 
