@@ -2,22 +2,26 @@
 
 let commentCount = 5 ;
 
-let comments = [];
+let comments = [] ;
 
 let VideoId = document.getElementById("videoId").value;
+let commentSection = document.getElementById("commentSection");
+
 
 const updateContent = function () {
-    let commentSection = document.getElementById("commentSection");
-  
+    
+  commentSection.innerHTML = "";
+    
     for (let i = 0; i < commentCount; i++) {
     let h6 = document.createElement("h6");
     let p = document.createElement("p");
 
-      h6.innerText = comments[i].name;
-      p.innerText =  comments[i].commentContent;  
+        h6.innerText = comments[i].name;
+        p.innerText =  comments[i].commentContent;  
       
         commentSection.appendChild(h6);
         commentSection.appendChild(p);
+      
     }
   };
 
@@ -26,7 +30,9 @@ btn.addEventListener("click", function () {
   let name = document.getElementById("name").value;
   let commentContent = document.getElementById("comment").value;
   let userId = document.getElementById("userId").value;
-
+  let box = document.getElementById("comment");
+  
+  if(!name) {return window.location.href = "http://localhost:3000/user/login";}
  
   let data = {
     name: name,
@@ -34,6 +40,7 @@ btn.addEventListener("click", function () {
     userId:userId
   };
 
+  box.value = "";
    
   let request = new XMLHttpRequest();
   request.open("post", `/comments/${VideoId}`);
@@ -56,7 +63,6 @@ viewMore.addEventListener("click",function () {
     commentCount = commentCount + 5;
     updateContent();
 });
-
 
 const loadComments = function () {
     let request = new XMLHttpRequest();

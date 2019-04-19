@@ -100,6 +100,8 @@ router.get('/comments/:id', (req, res) => {
     DB.collection("comments").find({videoId:req.params.id}).toArray(function(error, comments) {
        
         error ? console.log(error) : res.json(comments);
+
+       
     
     });
 });
@@ -107,14 +109,17 @@ router.get('/comments/:id', (req, res) => {
 router.post('/comments/:id', (req, res) => {
     if (!req.session.user) { return res.redirect("/user/login")};
     let DB = req.app.locals.DB;
-    newComment = {
+    let newComment = {
         name: req.body.name,
         commentContent: req.body.commentContent,
         userId:req.body.userId,
-        videoId:req.params.id
+        videoId:req.params.id,
+        date:Date()
     }
+    
     DB.collection("comments").insertOne(newComment, function(error, result) {
-      error ? console.log(error) : res.json(newComment);
+      error ? console.log(error) : res.send("ok");
+     
     });
 });
 

@@ -61,16 +61,19 @@
                         </video>
                             <h4 class="text-left m-3">Comments Area</h4>
                             <div class="form-group">
-                            <label for="comment"> Wanna Share Your Views ? What Are You Waiting For Then Write It Down</label>
-                            <textarea class="form-control" id="comment" name="comment" id="" cols="30" rows="2"></textarea>
-                            <button class="btn btn-success" name="btn" id="btn" type="submit">Post</button>
+                            <label for="comment"> Wanna Share Your Views ? What Are You Waiting For ? Write It Down</label>
+                            <textarea class="form-control" id="comment" name="comment" cols="30" rows="1"></textarea>
+                            <input id="name" type="hidden" value="{{user.name}}" >
+                            <div class="text-right">
+                            <button class="btn btn-success m-2 " name="btn" id="btn" type="submit">Comment</button>
+                            </div>
                             </div>
 
-                        <div id="commentSection">
-                            <input id="name" type="hidden" value="{{user.name}}" >
+                        <div id="commentSection" class="m-2">
+                            
                         </div>
-                        <div>
-                            <button class="btn btn-secondary" type="button" id="view">View More</button>
+                        <div class="text-right">
+                            <button  class="btn btn-secondary" type="button" id="view">View More</button>
                         </div>
                     </div>
             
