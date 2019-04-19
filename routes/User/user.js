@@ -3,6 +3,8 @@
 // All external libraries
 const express = require("express");
 const session = require("express-session");
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 const mongo = require("mongodb");
 const router = express.Router();
 
@@ -44,7 +46,7 @@ router.post('/signup', (req, res) => {
         email: req.body.email,
         password: req.body.password
     };
-
+    var hash = bcrypt.hashSync(user.password, saltRounds);
     DB.collection("users").insertOne(user, function (error) {
         if (error) {
             res.send("Error occured while SignUp.");
