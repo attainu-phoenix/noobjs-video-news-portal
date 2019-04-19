@@ -143,7 +143,7 @@ router.post('/home/video/reject', (req, res) =>
             DB.collection("videos").updateOne
             (
                 addVideo,
-                { $set: {  title:req.body.title,description:req.body.description,category:req.body.category,isPublished :true } }
+                { $set: {  title:req.body.title,description:req.body.description,category:req.body.category,isPublished :true,date:Date() } }
             );
             
             

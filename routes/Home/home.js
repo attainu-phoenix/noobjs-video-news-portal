@@ -52,7 +52,7 @@ router.get('/', (req, res) => {
 router.get('/video/:id', (req, res) => {
     let DB = req.app.locals.DB;
     let singleVideo = {};
-    let findThis = { _id: mongo.ObjectId(req.params.id) };
+    let findThis = { _id: mongo.ObjectID(req.params.id)};
     let mysort = { date: -1 };
     req.session.user ? singleVideo.logoutBtn = true : singleVideo.loginBtn = true;
     if (req.session.user) { singleVideo.user = req.session.user };
@@ -113,8 +113,7 @@ router.post('/comments/:id', (req, res) => {
         name: req.body.name,
         commentContent: req.body.commentContent,
         userId:req.body.userId,
-        videoId:req.params.id,
-        date:Date()
+        videoId:req.params.id
     }
     
     DB.collection("comments").insertOne(newComment, function(error, result) {
