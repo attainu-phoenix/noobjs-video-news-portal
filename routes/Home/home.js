@@ -3,6 +3,9 @@ const express = require('express');
 const router = express.Router();
 const mongo = require("mongodb");
 const session = require("express-session");
+const multiparty = require("multiparty");
+const fs = require("fs");
+
 
 
 // Home Route For The Users 
@@ -81,17 +84,52 @@ router.get('/upload', (req, res) => {
 router.post('/upload', (req, res) => {
     let DB = req.app.locals.DB;
 
+    let form = new multiparty.Form();
+
     let incomingData = {
-        title: req.body.title,
-        description: req.body.description,
-        category: req.body.category,
         date: Date(),
         isPublished: false
     };
 
-    DB.collection("videos").insertOne(incomingData, function(error, result) {
-        error ? console.log(error) : res.redirect("/?videoUploaded=true");
+
+    // Parse the form to get uploaded data
+    form.parse(req, function(error, fields, files) {
+
+        // // Get the file name for the fist file.
+        let file1Path = files.thumbnail[0].path;
+        let file1Name = file1Path.split("\\")[6];
+
+        // // Get the file name for the second file.
+        let file2Path = files.video[0].path;
+        let file2Name = file2Path.split("\\")[6];
+
+        incomingData.thumbnail = file1Name;
+        incomingData.video = file2Name;
+        incomingData.title = fields.title[0];
+        incomingData.description = fields.description[0];
+        incomingData.category = fields.category[0];
+
+       
+
+        // // Move the first file from tmp folder to uploads/first
+        fs.rename(file1Path, "uploads/images/" + file1Name, function(error) {
+            if(error) { return res.send("error uploading file");}
+
+        //     // Move the second file from tmp folder to uploads/second
+            fs.rename(file2Path, "uploads/videos/" + file2Name, function(error) {
+                if(error) { return res.send("error uploading file");}
+
+                // Finally redirect back to index page.
+                // This is where you need to put all your MongoDB insert calls if you have any.
+
+                DB.collection("videos").insertOne(incomingData, function(error, result) {
+                        error ? console.log(error) : res.redirect("/?videoUploaded=true");
+                });
+            });
+        });
+
     });
+
 });
 
 

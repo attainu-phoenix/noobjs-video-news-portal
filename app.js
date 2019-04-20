@@ -26,6 +26,8 @@ app.use(bodyParser.json());
 
 app.use(express.static("public"));
 
+app.use(express.static("uploads"));
+
 app.use(session({secret:"winterIsComing"}));
 
 app.use("/", Home);

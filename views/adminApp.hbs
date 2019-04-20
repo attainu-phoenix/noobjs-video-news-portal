@@ -38,13 +38,14 @@
     
     <div class="container-fluid">
         <div class="row m-5">
-            <div class="col-md-6">
-                    <video preload="none" class="embed-responsive embed-responsive-1by1" poster="/sample.jpg" controls>
-                            <source src="/sample.mp4" type="video/mp4">
+           
+             {{#each video}}
+              <div class="col-md-6">
+                    <video preload="none" class="embed-responsive embed-responsive-1by1" poster="/images/{{thumbnail}}" controls>
+                            <source src="/videos/{{video}}" type="video/mp4">
                     </video>
             </div>
-            <div class="col-md-6">
-             {{#each video}}
+              <div class="col-md-6">
             <form class="" action="formaction" method="POST">
                    
                     <div class="form-group">
