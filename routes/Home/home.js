@@ -96,27 +96,25 @@ router.post('/upload', (req, res) => {
     form.parse(req, function(error, fields, files) {
 
         // // Get the file name for the fist file.
-        let file1Path = files.thumbnail[0].path;
-        let file1Name = file1Path.split("\\")[6];
-
+        let file1Path = files.thumbnail[0].path.split("\\");
+        let imagePath = files.thumbnail[0].path;
+        let file1Name = file1Path[file1Path.length - 1];
         // // Get the file name for the second file.
-        let file2Path = files.video[0].path;
-        let file2Name = file2Path.split("\\")[6];
-
+        let file2Path = files.video[0].path.split("\\");
+        let videoPath = files.video[0].path;
+        let file2Name = file2Path[file2Path.length - 1];
         incomingData.thumbnail = file1Name;
         incomingData.video = file2Name;
         incomingData.title = fields.title[0];
         incomingData.description = fields.description[0];
         incomingData.category = fields.category[0];
 
-       
-
         // // Move the first file from tmp folder to uploads/first
-        fs.rename(file1Path, "uploads/images/" + file1Name, function(error) {
+        fs.rename(imagePath, "uploads/images/" + file1Name, function(error) {
             if(error) { return res.send("error uploading file");}
 
         //     // Move the second file from tmp folder to uploads/second
-            fs.rename(file2Path, "uploads/videos/" + file2Name, function(error) {
+            fs.rename(videoPath, "uploads/videos/" + file2Name, function(error) {
                 if(error) { return res.send("error uploading file");}
 
                 // Finally redirect back to index page.
