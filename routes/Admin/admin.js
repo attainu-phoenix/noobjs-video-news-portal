@@ -5,6 +5,7 @@ const router = express.Router();
 
 const mongo=require('mongodb');
 
+const fs = require('fs'); 
 
 
 router.get('/login', (req, res) => {
@@ -117,12 +118,35 @@ router.get('/home/video', (req, res) =>
 
 router.post('/home/video/reject', (req, res) => 
     {
+            
             let sess=req.session;
+            let DB = req.app.locals.DB;
             if(sess.email&&sess.password)
             {
             let removeVideo={_id : mongo.ObjectId(req.body.videoId)};
-            let DB = req.app.locals.DB;
-        
+            DB.collection("videos").find(removeVideo).toArray(function(error,video)
+                        {
+                            if(error)
+                            {
+                                console.log(error);
+                            }
+                            else
+                            {
+                                fs.unlink('uploads/images/'+video[0].thumbnail, function (err) 
+                                {
+                                if (err) throw err;
+                                });  
+                                fs.unlink('uploads/videos/'+video[0].video, function (err) 
+                                {
+                                if (err) throw err;
+                                });  
+                            }
+                        });
+                        
+            
+            
+          
+            
             DB.collection("videos").remove(removeVideo);
                 res.redirect('/admin/home');  
     
