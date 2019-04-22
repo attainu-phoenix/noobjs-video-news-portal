@@ -51,9 +51,8 @@ btn.addEventListener("click", function () {
 
   request.onreadystatechange = function () {
     if (request.readyState == 4 && request.status == 200) {
-      comments.push(data);
       commentCount = commentCount + 1;
-      updateContent();
+      loadComments();
     }
   };
 });

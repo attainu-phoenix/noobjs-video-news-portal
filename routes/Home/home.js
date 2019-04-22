@@ -134,7 +134,8 @@ router.post('/upload', (req, res) => {
 
 router.get('/comments/:id', (req, res) => {
     let DB = req.app.locals.DB;
-    DB.collection("comments").find({videoId:req.params.id}).toArray(function(error, comments) {
+    let mysort = { date: -1 };
+    DB.collection("comments").find({videoId:req.params.id}).sort(mysort).toArray(function(error, comments) {
        
         error ? console.log(error) : res.json(comments);
 
@@ -150,7 +151,8 @@ router.post('/comments/:id', (req, res) => {
         name: req.body.name,
         commentContent: req.body.commentContent,
         userId:req.body.userId,
-        videoId:req.params.id
+        videoId:req.params.id,
+        date:Date()
     }
     
     DB.collection("comments").insertOne(newComment, function(error, result) {
