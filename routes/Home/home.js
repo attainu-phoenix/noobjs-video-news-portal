@@ -120,7 +120,7 @@ router.post('/upload', (req, res) => {
 
     //Data Object That We Are Going To Store In The Database.
     let incomingData = {
-        date: Date(),
+        date: new Date(),
         isPublished: false
     };
 
